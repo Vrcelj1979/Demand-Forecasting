@@ -4,9 +4,9 @@ from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
 import matplotlib.pyplot as plt
 
-# Primer podatkov - predpostavljamo, da imamo zgodovinske podatke o prodaji
-# X predstavlja neodvisne spremenljivke (npr. cene, oglaševalski proračun, itd.)
-# y predstavlja odvisno spremenljivko (npr. število prodanih izdelkov)
+# Example data - suppose we have historical sales data
+# X represents the independent variables (eg prices, advertising budget, etc.)
+# y represents the dependent variable (e.g. number of products sold)
 data = {
     'Cena': [100, 200, 300, 400, 500],
     'Oglaševalski_proračun': [50, 100, 150, 200, 250],
@@ -15,27 +15,27 @@ data = {
 
 df = pd.DataFrame(data)
 
-# ločitev podatkov na vektorje funkcij (X) in ciljno spremenljivko (y)
+# data separation into function vectors (X) and target variable (y)
 X = df[['Cena', 'Oglaševalski_proračun']]
 y = df['Prodaja']
 
-# razdelitev podatkov na učni in testni nabor
+# splitting the data into training and test sets
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
-# Ustvarjanje modela linearne regresije
+# Creating a linear regression model
 model = LinearRegression()
 
-# Učenje modela na učnih podatkih
+# Learning the model on the training data
 model.fit(X_train, y_train)
 
-# Napovedovanje na testnih podatkih
+# Prediction on test data
 y_pred = model.predict(X_test)
 
-# Izpis rezultatov
+# Print the results
 print("Napovedane vrednosti:", y_pred)
 print("Prave vrednosti:", y_test.values)
 
-# Shranite graf kot sliko
+# Save the graph as an image
 plt.scatter(y_test, y_pred)
 plt.xlabel("Prave vrednosti")
 plt.ylabel("Napovedane vrednosti")
